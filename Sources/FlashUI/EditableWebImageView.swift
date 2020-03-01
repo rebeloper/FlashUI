@@ -18,7 +18,7 @@ public struct EditableWebImageView: View {
          cameraImageColor: Color = Color(.black),
          cameraImageSize: CGSize = CGSize(width: 20, height: 20),
          rectangleImageViewCornerRadius: CGFloat = 10,
-         didCancel: @escaping () -> (),
+         didCancel: @escaping () -> () = {},
          didSelect: @escaping (UIImage) -> ()) {
         self.imageUrl = imageUrl
         self.placeholderImage = placeholderImage
