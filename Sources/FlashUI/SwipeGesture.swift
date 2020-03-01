@@ -83,7 +83,7 @@ public extension SwipeGesture {
 
 extension UIView {
     
-    func addSwipeGesture(
+    public func addSwipeGesture(
         _ direction: UISwipeGestureRecognizer.Direction,
         target: Any?,
         action: Selector) {
@@ -95,7 +95,7 @@ extension UIView {
 
 extension View {
     
-    func onSwipeGesture(
+    public func onSwipeGesture(
         up: @escaping SwipeGesture.Action = {},
         left: @escaping SwipeGesture.Action = {},
         right: @escaping SwipeGesture.Action = {},
