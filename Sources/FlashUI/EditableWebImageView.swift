@@ -10,20 +10,43 @@ import SDWebImageSwiftUI
 
 public struct EditableWebImageView: View {
     
-    public var imageUrl: String
-    public var placeholderImage: Image
-    public var size: CGSize
+    init(imageUrl: String,
+         placeholderImage: Image,
+         size: CGSize,
+         isShowingImagePicker: Binding<Bool>,
+         selectedImage: Binding<UIImage>,
+         didSelectImage: Binding<Bool>,
+         isCircle: Bool,
+         cameraImage: Image = Image(systemName: "camera"),
+         cameraImageColor: Color = Color(.black),
+         cameraImageSize: CGSize = CGSize(width: 20, height: 20),
+         rectangleImageViewCornerRadius: CGFloat = 10) {
+        self.imageUrl = imageUrl
+        self.placeholderImage = placeholderImage
+        self.isShowingImagePicker = isShowingImagePicker
+        self.selectedImage = selectedImage
+        self.didSelectImage = didSelectImage
+        self.isCircle = isCircle
+        self.cameraImage = cameraImage
+        self.cameraImageColor = cameraImageColor
+        self.cameraImageSize = cameraImageSize
+        self.rectangleImageViewCornerRadius = rectangleImageViewCornerRadius
+    }
     
-    @Binding public var isShowingImagePicker: Bool
-    @Binding public var selectedImage: UIImage
-    @Binding public var didSelectImage: Bool
+    var imageUrl: String
+    var placeholderImage: Image
+    var size: CGSize
     
-    public var isCircle: Bool
+    @Binding var isShowingImagePicker: Binding<Bool>
+    @Binding var selectedImage: Binding<UIImage>
+    @Binding var didSelectImage: Binding<Bool>
     
-    public var cameraImage = Image(systemName: "camera")
-    public var cameraImageColor = Color(.black)
-    public var cameraImageSize: CGSize = CGSize(width: 20, height: 20)
-    public var rectangleImageViewCornerRadius: CGFloat = 10
+    var isCircle: Bool
+    
+    var cameraImage: Image
+    var cameraImageColor: Color
+    var cameraImageSize: CGSize
+    var rectangleImageViewCornerRadius: CGFloat
     
     public var body: some View {
         HStack {

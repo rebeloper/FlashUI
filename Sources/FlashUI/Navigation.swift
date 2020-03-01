@@ -24,17 +24,4 @@ public struct Segue<Destination: View>: View {
     }
 }
 
-/// Creates an active segue. Please use `LazyView(build:_)` for `view` if you do not want to load the view imediately (useful in Lists)
-public struct ActiveSegue<Destination: View>: View {
-    
-    @Binding public var isActive: Bool
-    public var view: Destination
-    
-    public var body: some View {
-        NavigationLink(destination: view, isActive: $isActive) {
-            EmptyView()
-        }
-    }
-}
-
 
