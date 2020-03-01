@@ -20,7 +20,7 @@ public struct SwipeGesture: UIViewRepresentable {
 
     private let actions: Actions
 
-    typealias Context = UIViewRepresentableContext<SwipeGesture>
+    public typealias Context = UIViewRepresentableContext<SwipeGesture>
 
     public func makeUIView(context: Context) -> UIView {
         let coord = context.coordinator
