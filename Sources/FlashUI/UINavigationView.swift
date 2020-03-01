@@ -10,11 +10,11 @@ import UIKit
 
 public struct UINavigationView: UIViewControllerRepresentable {
     
-    private var rootViewController: UIViewController
-    
-    init(root: UIViewController) {
+    public init(root: UIViewController) {
         self.rootViewController = root
     }
+    
+    private var rootViewController: UIViewController
     
     public typealias Context = UIViewControllerRepresentableContext<UINavigationView>
     
