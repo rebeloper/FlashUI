@@ -17,7 +17,9 @@ public struct EditableWebImageView: View {
          cameraImage: Image = Image(systemName: "camera"),
          cameraImageColor: Color = Color(.black),
          cameraImageSize: CGSize = CGSize(width: 20, height: 20),
-         rectangleImageViewCornerRadius: CGFloat = 10) {
+         rectangleImageViewCornerRadius: CGFloat = 10,
+         didCancel: @escaping () -> (),
+         didSelect: @escaping (UIImage) -> ()) {
         self.imageUrl = imageUrl
         self.placeholderImage = placeholderImage
         self.size = size
@@ -26,7 +28,8 @@ public struct EditableWebImageView: View {
         self.cameraImageColor = cameraImageColor
         self.cameraImageSize = cameraImageSize
         self.rectangleImageViewCornerRadius = rectangleImageViewCornerRadius
-        
+        self.didCancel = didCancel
+        self.didSelect = didSelect
     }
     
     public var imageUrl: String
@@ -43,6 +46,9 @@ public struct EditableWebImageView: View {
     @State public var didSelectImage: Bool = false
     @State public var selectedImage = UIImage()
     @State public var isShowingImagePicker = false
+    
+    private let didCancel: () -> ()
+    private let didSelect: (UIImage) -> ()
     
     public var body: some View {
         HStack {
@@ -105,10 +111,12 @@ public struct EditableWebImageView: View {
                 }).sheet(isPresented: self.$isShowingImagePicker, content: {
                     ImagePickerView(delegate: ImagePickerView.Delegate(didCancel: {
                         self.isShowingImagePicker = false
+                        self.didCancel()
                     }, didSelect: { (uiImage) in
                         self.isShowingImagePicker = false
                         self.didSelectImage = true
                         self.selectedImage = uiImage
+                        self.didSelect(uiImage)
                     }))
                 })
             }
