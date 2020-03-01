@@ -43,9 +43,9 @@ public struct EditableWebImageView: View {
     public var cameraImageSize: CGSize
     public var rectangleImageViewCornerRadius: CGFloat
     
-    @State public var didSelectImage: Bool = false
-    @State public var selectedImage = UIImage()
-    @State public var isShowingImagePicker = false
+    @State private var didSelectImage: Bool = false
+    @State private var selectedImage = UIImage()
+    @State private var isShowingImagePicker = false
     
     private let didCancel: () -> ()
     private let didSelect: (UIImage) -> ()
