@@ -11,8 +11,8 @@ import SDWebImageSwiftUI
 public struct EditableWebImageView: View {
     
     public init(imageUrl: String,
-         placeholderImage: Image,
          size: CGSize,
+         placeholderImage: Image = Image(uiImage: UIImage()),
          isCircle: Bool = false,
          cameraImage: Image = Image(systemName: "camera"),
          cameraImageColor: Color = Color(.black),
@@ -21,8 +21,8 @@ public struct EditableWebImageView: View {
          didCancel: @escaping () -> () = {},
          didSelect: @escaping (UIImage) -> ()) {
         self.imageUrl = imageUrl
-        self.placeholderImage = placeholderImage
         self.size = size
+        self.placeholderImage = placeholderImage
         self.isCircle = isCircle
         self.cameraImage = cameraImage
         self.cameraImageColor = cameraImageColor

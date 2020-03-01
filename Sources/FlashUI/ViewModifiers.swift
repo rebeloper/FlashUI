@@ -17,6 +17,7 @@ struct RectangleImageViewModifier: ViewModifier {
         content
             .scaledToFill()
             .frame(width: size.width, height: size.height)
+            .background(Color.gray)
             .cornerRadius(cornerRadius)
     }
 }
@@ -30,6 +31,7 @@ struct CircularImageViewModifier: ViewModifier {
         content
             .scaledToFill()
             .frame(width: width, height: width)
+            .background(Color.gray)
             .cornerRadius(width / 2)
     }
 }
