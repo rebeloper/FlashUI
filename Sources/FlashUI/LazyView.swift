@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  LazyView.swift
 //  
 //
 //  Created by Alex Nagy on 01/03/2020.
