@@ -13,9 +13,6 @@ public struct EditableWebImageView: View {
     public init(imageUrl: String,
          placeholderImage: Image,
          size: CGSize,
-         isShowingImagePicker: Binding<Bool>,
-         selectedImage: Binding<UIImage>,
-         didSelectImage: Binding<Bool>,
          isCircle: Bool,
          cameraImage: Image = Image(systemName: "camera"),
          cameraImageColor: Color = Color(.black),
@@ -23,30 +20,29 @@ public struct EditableWebImageView: View {
          rectangleImageViewCornerRadius: CGFloat = 10) {
         self.imageUrl = imageUrl
         self.placeholderImage = placeholderImage
-        self.isShowingImagePicker = isShowingImagePicker
-        self.selectedImage = selectedImage
-        self.didSelectImage = didSelectImage
+        self.size = size
         self.isCircle = isCircle
         self.cameraImage = cameraImage
         self.cameraImageColor = cameraImageColor
         self.cameraImageSize = cameraImageSize
         self.rectangleImageViewCornerRadius = rectangleImageViewCornerRadius
+        
     }
     
-    var imageUrl: String
-    var placeholderImage: Image
-    var size: CGSize
+    public var imageUrl: String
+    public var placeholderImage: Image
+    public var size: CGSize
     
-    @Binding var isShowingImagePicker: Binding<Bool>
-    @Binding var selectedImage: Binding<UIImage>
-    @Binding var didSelectImage: Binding<Bool>
+    public var isCircle: Bool
     
-    var isCircle: Bool
+    public var cameraImage: Image
+    public var cameraImageColor: Color
+    public var cameraImageSize: CGSize
+    public var rectangleImageViewCornerRadius: CGFloat
     
-    var cameraImage: Image
-    var cameraImageColor: Color
-    var cameraImageSize: CGSize
-    var rectangleImageViewCornerRadius: CGFloat
+    @State public var didSelectImage: Bool = false
+    @State public var selectedImage = UIImage()
+    @State public var isShowingImagePicker = false
     
     public var body: some View {
         HStack {
@@ -64,12 +60,12 @@ public struct EditableWebImageView: View {
                         .resizable()
                         .placeholder(placeholderImage)
                         .indicator(.activity)
-                        .modifier(CircularImageViewModifier(width: size.width, didSelectImage: self.$didSelectImage))
+                        .modifier(CircularImageViewModifier(width: size.width, didSelectImage: self.didSelectImage))
                     
                     if self.didSelectImage {
                         Image(uiImage: self.selectedImage)
                             .resizable()
-                            .modifier(CircularImageViewModifier(width: size.width, didSelectImage: self.$didSelectImage))
+                            .modifier(CircularImageViewModifier(width: size.width, didSelectImage: self.didSelectImage))
                     }
                 } else {
                     WebImage(url: URL(string: self.imageUrl))
@@ -84,14 +80,14 @@ public struct EditableWebImageView: View {
                         .indicator(.activity)
                         .modifier(RectangleImageViewModifier(size: size,
                                                              cornerRadius: rectangleImageViewCornerRadius,
-                                                             didSelectImage: self.$didSelectImage))
+                                                             didSelectImage: self.didSelectImage))
                     
                     if self.didSelectImage {
                         Image(uiImage: self.selectedImage)
                             .resizable()
                             .modifier(RectangleImageViewModifier(size: size,
                                                                  cornerRadius: rectangleImageViewCornerRadius,
-                                                                 didSelectImage: self.$didSelectImage))
+                                                                 didSelectImage: self.didSelectImage))
                     }
                 }
                 

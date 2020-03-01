@@ -11,7 +11,7 @@ struct RectangleImageViewModifier: ViewModifier {
     
     var size: CGSize
     var cornerRadius: CGFloat
-    @Binding var didSelectImage: Bool
+    var didSelectImage: Bool
     
     func body(content: Content) -> some View {
         content
@@ -24,7 +24,7 @@ struct RectangleImageViewModifier: ViewModifier {
 struct CircularImageViewModifier: ViewModifier {
     
     var width: CGFloat
-    @Binding var didSelectImage: Bool
+    var didSelectImage: Bool
     
     func body(content: Content) -> some View {
         content
