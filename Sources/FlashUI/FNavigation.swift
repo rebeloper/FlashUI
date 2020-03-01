@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-typealias ActiveView = Int
+typealias FActiveView = Int
 
 struct Segue<Destination: View>: View {
     
-    @Binding var activeView: ActiveView?
-    var tag: ActiveView
+    @Binding var activeView: FActiveView?
+    var tag: FActiveView
     var destination: () -> Destination
     
     var body: some View {
@@ -32,25 +32,25 @@ struct Segue<Destination: View>: View {
     
     import SwiftUI
  
- 1. Create a View
+ 1. Create an FView
  
     This is actually a tag that is an Int
  
- struct Views {
+ struct FViews {
     static let signIn = 1
  }
  
  2. Create a Segue for a View
  
-    This is actually a View which has an activeView Binging -> @Binding var activeView: ActiveView?
-    It is taged by the View you created in Step 1 -> Views.signIn
+    This is actually a View which has an activeView Binging -> @Binding var activeView: FActiveView?
+    It is taged by the View you created in Step 1 -> FViews.signIn
     It has a destination View - the View where you want to navigate -> SignInView()
  
  struct OnboardingViewSegues: View {
-     @Binding var activeView: ActiveView?
+     @Binding var activeView: FActiveView?
      var body: some View {
          VStack {
-             Segue(activeView: $activeView, tag: Views.signIn) {
+             Segue(activeView: $activeView, tag: FViews.signIn) {
                  SignInView()
              }
          }
@@ -62,13 +62,13 @@ struct Segue<Destination: View>: View {
     Make sure you are inside a NavigationView
     Note: once you have instantiated a NavigationView you don't have to do it in the upcoming "navigated to" Views (SwiftUI stuff)
     
-    a). create an activeView -> @State private var activeView: ActiveView?
+    a). create an activeView -> @State private var activeView: FActiveView?
     b). add the Segue with this activeView to the View hierarchy (inside the VStack) -> OnboardingViewSegues(activeView: $activeView)
-    c). when you want to navigate change the activeView -> self.activeView = Views.signIn
+    c). when you want to navigate change the activeView -> self.activeView = FViews.signIn
  
  struct OnboardingView: View {
      
-     @State private var activeView: ActiveView?
+     @State private var activeView: FActiveView?
      
      var body: some View {
          NavigationView {
@@ -76,7 +76,7 @@ struct Segue<Destination: View>: View {
                  OnboardingViewSegues(activeView: $activeView)
                  
                  Button(action: {
-                     self.activeView = Views.signIn
+                     self.activeView = FViews.signIn
                  }, label: {
                      ButtonView(title: "Sign in")
                  })
@@ -92,7 +92,7 @@ struct Segue<Destination: View>: View {
  You can pass along dependencies too:
  
  struct AuthorProductSessionsViewSegues: View {
-     @Binding var activeView: ActiveView?
+     @Binding var activeView: FActiveView?
      
      var profile: Profile
      var session: Session
@@ -103,11 +103,11 @@ struct Segue<Destination: View>: View {
      
      var body: some View {
          VStack {
-             Segue(activeView: $activeView, tag: Views.authorSession) {
+             Segue(activeView: $activeView, tag: FViews.authorSession) {
                  AuthorSessionView(profile: self.profile, session: self.session, sessionCount: self.sessionCount, height: self.height)
              }
              
-             Segue(activeView: $activeView, tag: Views.authorEditProduct) {
+             Segue(activeView: $activeView, tag: FViews.authorEditProduct) {
                  AuthorEditProductView(product: self.product)
              }
          }
@@ -123,7 +123,7 @@ struct Segue<Destination: View>: View {
     height: 100,
     product: product)
  
- ... with these States declared in the AuthorProductSessionsView (thae parent view):
+ ... with these States declared in the AuthorProductSessionsView (the parent view):
  
  @State var profile: Profile = Profile()
  @State var selectedSession: Session = Session()
