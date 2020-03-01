@@ -9,6 +9,7 @@ import SwiftUI
 
 public typealias ActiveView = Int
 
+/// Creates a segue. Please use `LazyView(_)` for destination if you do not want to load the view imediately (useful in Lists)
 public struct Segue<Destination: View>: View {
     
     @Binding public var activeView: ActiveView?
@@ -16,7 +17,7 @@ public struct Segue<Destination: View>: View {
     public var view: Destination
     
     public var body: some View {
-        NavigationLink(destination: LazyView(self.view), tag: push, selection: self.$activeView) {
+        NavigationLink(destination: view, tag: push, selection: self.$activeView) {
             EmptyView()
         }
     }
