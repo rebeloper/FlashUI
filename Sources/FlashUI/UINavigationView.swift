@@ -19,7 +19,7 @@ public struct UINavigationView: UIViewControllerRepresentable {
     public typealias Context = UIViewControllerRepresentableContext<UINavigationView>
     
     public func makeUIViewController(context: Context) -> UINavigationController {
-        return UINavigationController(rootViewController: root)
+        return UINavigationController(rootViewController: rootViewController)
     }
     
     public func updateUIViewController(_ uiViewController: UINavigationController, context: Context) { }
