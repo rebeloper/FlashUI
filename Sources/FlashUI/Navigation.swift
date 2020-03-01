@@ -8,8 +8,9 @@
 import SwiftUI
 
 public typealias ActiveView = Int
+public typealias Segues = VStack
 
-/// Creates a segue. Please use `LazyView(_)` for destination if you do not want to load the view imediately (useful in Lists)
+/// Creates a segue. Please use `LazyView(build:_)` for `view` if you do not want to load the view imediately (useful in Lists)
 public struct Segue<Destination: View>: View {
     
     @Binding public var activeView: ActiveView?
