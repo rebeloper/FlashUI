@@ -13,7 +13,7 @@ public struct EditableWebImageView: View {
     public init(imageUrl: String,
          placeholderImage: Image,
          size: CGSize,
-         isCircle: Bool,
+         isCircle: Bool = false,
          cameraImage: Image = Image(systemName: "camera"),
          cameraImageColor: Color = Color(.black),
          cameraImageSize: CGSize = CGSize(width: 20, height: 20),
