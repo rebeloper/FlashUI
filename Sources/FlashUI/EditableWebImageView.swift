@@ -19,7 +19,7 @@ public struct EditableWebImageView: View {
          cameraImageSize: CGSize = CGSize(width: 20, height: 20),
          rectangleImageViewCornerRadius: CGFloat = 10,
          didCancel: @escaping () -> () = {},
-         didSelect: @escaping (Image) -> ()) {
+         didSelect: @escaping (UIImage) -> ()) {
         self.imageUrl = imageUrl
         self.placeholderImage = placeholderImage
         self.size = size
@@ -48,7 +48,7 @@ public struct EditableWebImageView: View {
     @State private var isShowingImagePicker = false
     
     private let didCancel: () -> ()
-    private let didSelect: (Image) -> ()
+    private let didSelect: (UIImage) -> ()
     
     public var body: some View {
         HStack {
@@ -116,7 +116,7 @@ public struct EditableWebImageView: View {
                         self.isShowingImagePicker = false
                         self.didSelectImage = true
                         self.selectedImage = uiImage
-                        self.didSelect(Image(uiImage: uiImage))
+                        self.didSelect(uiImage)
                     }))
                 })
             }
