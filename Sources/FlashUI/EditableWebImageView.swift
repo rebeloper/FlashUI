@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 public struct EditableWebImageView: View {
     
-    init(imageUrl: String,
+    public init(imageUrl: String,
          placeholderImage: Image,
          size: CGSize,
          isShowingImagePicker: Binding<Bool>,
