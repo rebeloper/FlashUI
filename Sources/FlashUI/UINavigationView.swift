@@ -10,12 +10,17 @@ import UIKit
 
 public struct UINavigationView: UIViewControllerRepresentable {
     
-    public var root: UIViewController
+    private var rootViewController: UIViewController
     
-    public func makeUIViewController(context: UIViewControllerRepresentableContext<UINavigationView>) -> UINavigationController {
+    init(root: UIViewController) {
+        self.rootViewController = root
+    }
+    
+    public typealias Context = UIViewControllerRepresentableContext<UINavigationView>
+    
+    public func makeUIViewController(context: Context) -> UINavigationController {
         return UINavigationController(rootViewController: root)
     }
     
-    public func updateUIViewController(_ uiViewController: UINavigationController, context: UIViewControllerRepresentableContext<UINavigationView>) {
-    }
+    public func updateUIViewController(_ uiViewController: UINavigationController, context: Context) { }
 }

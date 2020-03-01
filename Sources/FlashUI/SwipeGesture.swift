@@ -33,7 +33,7 @@ public struct SwipeGesture: UIViewRepresentable {
         return view
     }
 
-    public func updateUIView(_ uiView: UIView, context: Context) {}
+    public func updateUIView(_ uiView: UIView, context: Context) { }
 }
 
 public extension SwipeGesture {
