@@ -8,9 +8,9 @@
 import SwiftUI
 import UIKit
 
-struct ImagePickerView: UIViewControllerRepresentable {
+public struct ImagePickerView: UIViewControllerRepresentable {
     
-    init(allowsEditing: Bool = true, delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate) {
+    public init(allowsEditing: Bool = true, delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate) {
         self.allowsEditing = allowsEditing
         self.delegate = delegate
     }
@@ -31,9 +31,9 @@ struct ImagePickerView: UIViewControllerRepresentable {
 
 extension ImagePickerView {
     
-    class Delegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    public class Delegate: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         
-        init(
+        public init(
             didCancel: @escaping () -> (),
             didSelect: @escaping (UIImage) -> ()) {
             self.didCancel = didCancel
