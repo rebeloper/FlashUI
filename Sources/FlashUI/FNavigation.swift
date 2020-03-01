@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-typealias FActiveView = Int
+public typealias FActiveView = Int
 
-struct Segue<Destination: View>: View {
+public struct Segue<Destination: View>: View {
     
-    @Binding var activeView: FActiveView?
-    var tag: FActiveView
-    var destination: () -> Destination
+    @Binding public var activeView: FActiveView?
+    public var tag: FActiveView
+    public var destination: () -> Destination
     
-    var body: some View {
+    public var body: some View {
         NavigationLink(destination: destination(), tag: tag, selection: self.$activeView) {
             EmptyView()
         }
@@ -31,6 +31,7 @@ struct Segue<Destination: View>: View {
  0. Create an FNavigationSetup file with:
     
     import SwiftUI
+    import FlashUI
  
  1. Create an FView
  
