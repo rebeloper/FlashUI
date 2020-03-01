@@ -18,15 +18,14 @@ public struct ImagePickerView: UIViewControllerRepresentable {
     private let delegate: UIImagePickerControllerDelegate & UINavigationControllerDelegate
     private let allowsEditing: Bool
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerView>) -> UIImagePickerController {
+    public func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePickerView>) -> UIImagePickerController {
         let controller = UIImagePickerController()
         controller.allowsEditing = allowsEditing
         controller.delegate = delegate
         return controller
     }
     
-    func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePickerView>) {
-    }
+    public func updateUIViewController(_ uiViewController: UIImagePickerController, context: UIViewControllerRepresentableContext<ImagePickerView>) { }
 }
 
 extension ImagePickerView {
@@ -43,7 +42,7 @@ extension ImagePickerView {
         private let didCancel: () -> ()
         private let didSelect: (UIImage) -> ()
         
-        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             var selectedImage = UIImage()
             if let editedImage = info[.editedImage] as? UIImage {
                 selectedImage = editedImage
@@ -53,7 +52,7 @@ extension ImagePickerView {
             didSelect(selectedImage)
         }
         
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             didCancel()
         }
     }
